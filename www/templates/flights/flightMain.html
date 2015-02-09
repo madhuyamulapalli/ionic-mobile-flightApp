@@ -1,0 +1,55 @@
+<ion-header-bar class="bar-dark">
+<h1 class="title">Flights</h1>
+</ion-header-bar>
+<ion-content>
+
+<div class="button-bar tripType ">
+  <a class="button button-small {{(searchForm.travelType == 'One-way') ? 'button-calm' : 'button-light'}}" ng-click="setTravelType($event)"><span class="{{(searchForm.travelType == 'One-way') ? 'light' : 'calm'}}">One-way</span></a>
+  <a class="button button-small {{(searchForm.travelType == 'Round-trip') ? 'button-calm' : 'button-light'}}" ng-click="setTravelType($event)"><span class="{{(searchForm.travelType == 'Round-trip') ? 'light' : 'calm'}}">Round-trip</span></a>
+</div>
+
+<div class="list">
+
+  <a class="item item-icon-left  item-icon-right" href="#">
+    <i class="icon ion-location calm"></i>
+    From
+    <i class="icon ion-search calm"></i>
+  </a>
+
+  <a class="item item-icon-left  item-icon-right" href="#">
+    <i class="icon ion-location calm"></i>
+    To
+    <i class="icon ion-search calm"></i>
+  </a>
+
+  <a class="item item-icon-left  item-icon-right" href="#">
+    <i class="icon ion-arrow-right-c calm"></i>
+    Today
+    <i class="icon ion-calendar calm"></i>
+  </a>
+
+  <a class="item item-icon-left  item-icon-right" href="#" ng-hide="searchForm.travelType == 'One-way'">
+    <i class="icon ion-arrow-left-c calm"></i>
+    Tommorow
+    <i class="icon ion-calendar calm"></i>
+  </a>
+
+  <a class="item item-icon-left  item-icon-right" href="#">
+    <i class="icon ion-person-add calm"></i>
+    Traveller
+	<i class="icon ion-plus-round calm"></i>
+  </a>
+
+  <a class="item item-icon-left  item-icon-right" ng-click="showFarePrefrence()">
+    <i class="icon ion-social-usd calm"></i>
+    {{ searchForm.farePrefrence || 'Economy'}}
+	<i class="icon ion-chevron-right calm"></i>
+  </a>
+</div>
+
+</ion-content>
+<ion-footer-bar class="footer">
+<button class="button button-block button-calm">
+  Find Flights
+</button>
+</ion-footer-bar>

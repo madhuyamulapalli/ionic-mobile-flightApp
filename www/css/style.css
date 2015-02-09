@@ -1,0 +1,22 @@
+/* Empty. Add your own CSS if you like */
+
+.tripType {
+	padding: 20px;
+}
+
+a.item {
+	height: 45px;
+}
+button.button-block {
+	width: 94%;
+}
+.button.button-block {
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.footer {
+	height: 80px;
+}
