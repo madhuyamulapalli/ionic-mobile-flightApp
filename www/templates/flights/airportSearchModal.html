@@ -1,0 +1,24 @@
+  <ion-modal-view >
+    <ion-header-bar class="bar-dark">
+	    <button class="button button-clear button-calm" ng-click="closeModal()">
+	      Cancel
+	    </button>
+    </ion-header-bar>
+    <ion-content>
+	<div class="list list-inset">
+	  <label class="item item-input">
+	    <i class="icon ion-search placeholder-icon calm"></i>
+	    <input type="text" placeholder="{{airport.placeholder}}" ng-model="airport.search" ng-change="searchAirports()">
+	    <i ng-click="clearSearch()" ng-if="airport.search.length > 0"  class="icon ion-close-round calm" ></i>
+	  </label>
+	</div>
+	<ion-list>
+		<ion-item ng-if="airports.length === 0">no matches found</ion-item>
+		<ion-item ng-repeat="airport in airports | limitTo: 7">
+          <p ng-click="airportSelected(airport.code)"><i class="icon ion-plane"></i> ({{airport.code}}) {{airport.city}}, {{airport.state}} - {{airport.name}} </p>
+        </ion-item>
+       </ion-list>
+       <div ng-if="airport.error" align="center"><p> <i class="icon ion-bug assertive"></i>  {{airport.error}}</p></div>
+    </ion-content>
+
+  </ion-modal-view>
