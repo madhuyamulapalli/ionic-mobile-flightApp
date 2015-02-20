@@ -10,15 +10,15 @@
 
 <div class="list">
 
-  <a class="item item-icon-left  item-icon-right" href="#">
+  <a class="item item-icon-left  item-icon-right" ng-click="showFromAirports()">
     <i class="icon ion-location calm"></i>
-    From
+    {{ searchForm.fromAirport || 'From'}}
     <i class="icon ion-search calm"></i>
   </a>
 
-  <a class="item item-icon-left  item-icon-right" href="#">
+  <a class="item item-icon-left  item-icon-right" ng-click="showToAirports()">
     <i class="icon ion-location calm"></i>
-    To
+    {{ searchForm.toAirport || 'To'}}
     <i class="icon ion-search calm"></i>
   </a>
 
