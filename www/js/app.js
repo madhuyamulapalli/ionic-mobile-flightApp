@@ -73,4 +73,12 @@ angular.module('flightsApp', [
     templateUrl: ' ',
     controller: 'FlightsCalendarCtrl'
   })
+  .state('flight.contactus', {
+    url: '/contactus',
+    views: {
+      'menuContent' : {
+          templateUrl: 'templates/flights/contactus.html',
+      }
+    }
+  })  
 });
