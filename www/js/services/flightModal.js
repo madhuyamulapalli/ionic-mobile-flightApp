@@ -1,6 +1,6 @@
 angular.module('flightsApp.services', [])
 .factory('FlightModals', ['FlightModalService', function(FlightModalService){
-  // all app modals here
+  //All the modals are called from here
   var service = {
     showAirports: showAirports,
     showCalendar: showCalendar
