@@ -22,28 +22,27 @@
     {{ vm.searchForm.toAirport || 'To'}}
     <i class="icon ion-search calm"></i>
   </a>
-
-  <a class="item item-icon-left  item-icon-right" ui-sref="flight-calendar">
+  <a class="item item-icon-left  item-icon-right" ng-click="vm.showFromCalendar()">
     <i class="icon ion-arrow-right-c calm"></i>
-    Today
+    {{ vm.searchForm.fromDate || 'Today' }}
     <i class="icon ion-calendar calm"></i>
   </a>
-
-  <a class="item item-icon-left  item-icon-right" href="#" ng-hide="vm.searchForm.travelType == 'One-way'">
+  <div class="myCalendar" id="fromFlyingDate"></div>
+  <a class="item item-icon-left  item-icon-right" ng-click="vm.showToCalendar()" ng-hide="vm.searchForm.travelType == 'One-way'">
     <i class="icon ion-arrow-left-c calm"></i>
-    Tommorow
+    {{ vm.searchForm.toDate || 'Tommorow' }}
     <i class="icon ion-calendar calm"></i>
   </a>
-
-  <a class="item item-icon-left  item-icon-right" href="#">
+  <div class="myCalendar" id="toFlyingDate"></div>
+  <a class="item item-icon-left  item-icon-right" ng-click="vm.travellerCount()">
     <i class="icon ion-person-add calm"></i>
-    Traveller
+    {{vm.searchForm.passengers}} {{(vm.searchForm.passengers == 1)? 'Traveller' : 'Travellers'}}
 	<i class="icon ion-plus-round calm"></i>
   </a>
 
   <a class="item item-icon-left  item-icon-right" ng-click="vm.showFarePrefrence()">
     <i class="icon ion-social-usd calm"></i>
-    {{ searchForm.farePrefrence || 'Economy'}}
+    {{ vm.searchForm.farePrefrence || 'Economy'}}
 	<i class="icon ion-chevron-right calm"></i>
   </a>
 </div>

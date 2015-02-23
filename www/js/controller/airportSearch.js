@@ -1,5 +1,5 @@
 angular.module('flightsApp.controllers')
-	.controller('AirportSearchCtrl', ['$scope', 'parameters', 'FlightModals', 'Airport', function($scope, parameters, FlightModals, Airport) {
+	.controller('AirportSearchCtrl', ['$scope', 'parameters', 'Airport', function($scope, parameters, Airport) {
 
 		var vm = this;
 		vm.airport = {

@@ -63,6 +63,7 @@ angular.module('flightsApp.services')
         modalScope.$broadcast('modal.afterShow', modalScope.modal);
       });
 
+
       if (angular.isFunction(options.modalCallback)) {
         options.modalCallback(modal);
       }

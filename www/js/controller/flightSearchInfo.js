@@ -10,6 +10,7 @@ angular.module('flightsApp.controllers', ['ionic'])
 				toAirport : '',
 				fromDate : '',
 				toDate : '',
+				passengers : 1,
 				travelType :  '',
 				farePrefrence : ''
 			};
@@ -62,28 +63,55 @@ angular.module('flightsApp.controllers', ['ionic'])
 			};
 
 			vm.showFromCalendar = function() {
-				FlightModals
-					.showCalendar(true)
+				/*FlightModals
+					.showCalendar((vm.searchForm.travelType == 'One-way')? 'a date' : 'from date')
 					.then(function(result) {
 						if(result) {
 
 						}
 					}, function(err) {
 						
-					});
+					});*/
+
+				$('#fromFlyingDate').ionCalendar({
+					lang: "en",                     // language
+				    sundayFirst: false,             // first week day
+				    years: "2015-2016",                    // years diapason
+				    format: "MM.DD.YYYY",           // date format
+				    onClick: function(date){        // click on day returns date
+				        vm.searchForm.fromDate = date;
+				        $('#fromFlyingDate').hide();
+				        return;
+				    }
+				});
+	
 			};
 
 			vm.showToCalendar = function() {
-				FlightModals
-					.showCalendar(false)
+				/*FlightModals
+					.showCalendar('to date')
 					.then(function(result) {
 						if(result) {
 
 						}
 					}, function(err) {
 						
-					});
+					});*/
+				$('#toFlyingDate').ionCalendar({
+					lang: "en",                     // language
+				    sundayFirst: false,             // first week day
+				    years: "2015-2016",                    // years diapason
+				    format: "MM.DD.YYYY",           // date format
+				    onClick: function(date){        // click on day returns date
+				        $('#toFlyingDate').hide();
+				        vm.searchForm.toDate = date;
+				    }
+				});
 			};
+
+			vm.travellerCount = function() {
+				vm.searchForm.passengers++;
+			}
 
 	}]);
 

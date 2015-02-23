@@ -12,8 +12,8 @@ angular.module('flightsApp.services', [])
     return FlightModalService.show('/templates/flights/airportSearchModal.html', 'AirportSearchCtrl as vm', placeholder);
   }
   
-  function showCalendar(fromDate) {
-    return FlightModalService.show('/templates/flights/calendarModal.html', 'FlightsCalendarCtrl as vm', fromDate);
+  function showCalendar(placeholder) {
+    return FlightModalService.show('/templates/flights/calendarModal.html', 'FlightCalendarCtrl as vm', placeholder);
   }
   
   
