@@ -1,9 +1,11 @@
 angular.module('flightsApp.controllers', ['ionic'])
 
-	.controller('FlightSearchInfoCtrl', ['$scope', '$ionicActionSheet', '$rootScope', 'FindAirportModalService', 
-		function($scope, $ionicActionSheet, $rootScope, FindAirportModalService){
+	.controller('FlightSearchInfoCtrl', ['$scope', '$ionicActionSheet', '$rootScope', 'FlightModals', 
+		function($scope, $ionicActionSheet, $rootScope, FlightModals){
 
-		$scope.searchForm = {
+		var vm = this;
+
+		vm.searchForm = {
 			fromAirport : '',
 			toAirport : '',
 			fromDate : '',
@@ -12,9 +14,9 @@ angular.module('flightsApp.controllers', ['ionic'])
 			farePrefrence : ''
 		};
 		
-		$scope.searchForm.travelType = 'One-way';
+		vm.searchForm.travelType = 'One-way';
 
-	    $scope.showFarePrefrence = function() {
+	    vm.showFarePrefrence = function() {
 	    	farePrefrencesList = ['Economy', 'Business', 'First'];
 			$ionicActionSheet.show({
 			     buttons: [
@@ -25,30 +27,63 @@ angular.module('flightsApp.controllers', ['ionic'])
 			     titleText: '',
 			     cancelText: 'Cancel',
 			     buttonClicked: function(index) {
-			     	$scope.searchForm.farePrefrence = farePrefrencesList[index];
+			     	vm.searchForm.farePrefrence = farePrefrencesList[index];
 			     	return true;
 			     }
 			   });
 			};
 
-		$scope.setTravelType  = function(event) {
-			$scope.searchForm.travelType = angular.element(event.target).text();
+		vm.setTravelType  = function(event) {
+			vm.searchForm.travelType = angular.element(event.target).text();
 		};
 
-		$scope.airport = {
-			search : '',
-			placeholder : '',
-			error : ''
+		vm.showFromAirports = function() {
+			FlightModals
+				.showAirports('from airport')
+				.then(function(result) {
+					if(result) {
+						vm.searchForm.fromAirport = result;
+					}
+				}, function(err) {
+					console.log(err);
+				});
 		};
 
-		$scope.showFromAirports = function() {
-			FindAirportModalService
-				.init('/templates/flights/airportSearchModal.html',  'from airport', $scope, true);
+		vm.showToAirports = function() {
+			FlightModals
+				.showAirports('to airport')
+				.then(function(result) {
+					if(result) {
+						vm.searchForm.toAirport = result;
+					}
+				}, function(err) {
+					console.log(err);
+				});
 		};
 
-		$scope.showToAirports = function() {
-			FindAirportModalService
-				.init('/templates/flights/airportSearchModal.html',  'to airport', $scope, false);
+		vm.showFromCalendar = function() {
+			FlightModals
+				.showCalendar(true)
+				.then(function(result) {
+					if(result) {
+
+					}
+				}, function(err) {
+					
+				});
+		};
+
+		vm.showToCalendar = function() {
+			FlightModals
+				.showCalendar(false)
+				.then(function(result) {
+					if(result) {
+
+					}
+				}, function(err) {
+					
+				});
 		};
 
 	}]);
+

@@ -59,4 +59,9 @@ angular.module('flightsApp', [
     templateUrl: 'templates/flights/flightMain.html',
     controller: 'FlightSearchInfoCtrl'
   })
+  .state('flight-calendar', {
+    url: '/calendar/:fromDate',
+    templateUrl: ' ',
+    controller: 'FlightsCalendarCtrl'
+  })
 });

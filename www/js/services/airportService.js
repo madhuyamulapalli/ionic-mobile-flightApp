@@ -1,4 +1,4 @@
-angular.module('flightsApp.services', [])
+angular.module('flightsApp.services')
 
   .factory('Airport', ['$resource', function($resource) {
 

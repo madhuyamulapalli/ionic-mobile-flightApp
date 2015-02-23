@@ -1,6 +1,6 @@
-  <ion-modal-view >
+  <ion-modal-view>
     <ion-header-bar class="bar-dark">
-	    <button class="button button-clear button-calm" ng-click="closeModal()">
+	    <button class="button button-clear button-calm" ng-click="vm.closeModal()">
 	      Cancel
 	    </button>
     </ion-header-bar>
@@ -8,17 +8,17 @@
 	<div class="list list-inset">
 	  <label class="item item-input">
 	    <i class="icon ion-search placeholder-icon calm"></i>
-	    <input type="text" placeholder="{{airport.placeholder}}" ng-model="airport.search" ng-change="searchAirports()">
-	    <i ng-click="clearSearch()" ng-if="airport.search.length > 0"  class="icon ion-close-round calm" ></i>
+	    <input type="text" placeholder="{{vm.airport.placeholder}}" ng-model="vm.airport.search" ng-change="vm.searchAirports()">
+	    <i ng-click="vm.clearSearch()" ng-show="vm.airport.search.length > 0"  class="icon ion-close-round calm" ></i>
 	  </label>
 	</div>
 	<ion-list>
-		<ion-item ng-if="airports.length === 0">no matches found</ion-item>
-		<ion-item ng-repeat="airport in airports | limitTo: 7">
-          <p ng-click="airportSelected(airport.code)"><i class="icon ion-plane"></i> ({{airport.code}}) {{airport.city}}, {{airport.state}} - {{airport.name}} </p>
+		<ion-item ng-if="vm.airports.length === 0">no matches found</ion-item>
+		<ion-item ng-repeat="air in vm.airports | limitTo: 7">
+          <p ng-click="vm.airportSelected(air.code)"><i class="icon ion-plane"></i> ({{air.code}}) {{air.city}}, {{air.state}} - {{air.name}} </p>
         </ion-item>
        </ion-list>
-       <div ng-if="airport.error" align="center"><p> <i class="icon ion-bug assertive"></i>  {{airport.error}}</p></div>
+       <div ng-if="vm.airport.error" align="center"><p> <i class="icon ion-bug assertive"></i>  {{vm.airport.error}}</p></div>
     </ion-content>
 
   </ion-modal-view>
