@@ -1,4 +1,4 @@
-angular.module('flightsApp.controllers', ['ionic'])
+angular.module('flightsApp.controllers')
 
 	.controller('FlightSearchInfoCtrl', ['$scope', '$ionicActionSheet', '$rootScope', 'FlightModals', 
 		function($scope, $ionicActionSheet, $rootScope, FlightModals){

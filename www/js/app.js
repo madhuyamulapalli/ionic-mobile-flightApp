@@ -51,13 +51,22 @@ angular.module('flightsApp', [
     }
   });
 
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/flight/flightsearch");
 
   $stateProvider
   .state('flight', {
-    url: '/',
-    templateUrl: 'templates/flights/flightMain.html',
-    controller: 'FlightSearchInfoCtrl'
+    url: "/flight",
+    abstract: true,
+    templateUrl: 'templates/flights/flight-menu.html'
+  })
+  .state('flight.flightsearch', {
+    url: '/flightsearch',
+    views: {
+      'menuContent' : {
+          templateUrl: 'templates/flights/flightMain.html',
+          controller: 'FlightSearchInfoCtrl'
+      }
+    }
   })
   .state('flight-calendar', {
     url: '/calendar/:fromDate',
