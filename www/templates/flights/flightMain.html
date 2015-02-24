@@ -1,7 +1,4 @@
 <ion-view title="Flights" ng-controller="FlightSearchInfoCtrl as vm">
-<ion-header-bar class="bar-dark">
-<h1 class="title">Flights</h1>
-</ion-header-bar>
 <ion-content>
 
 <div class="button-bar tripType ">
@@ -49,7 +46,7 @@
 
 </ion-content>
 <ion-footer-bar class="footer">
-<button class="button button-block button-calm">
+<button class="button button-block button-calm" ng-click="vm.validateSearchForm()" >
   Find Flights
 </button>
 </ion-footer-bar>

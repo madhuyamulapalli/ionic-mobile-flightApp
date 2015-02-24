@@ -1,7 +1,7 @@
 angular.module('flightsApp.controllers')
 
-	.controller('FlightSearchInfoCtrl', ['$scope', '$ionicActionSheet', '$rootScope', 'FlightModals', 
-		function($scope, $ionicActionSheet, $rootScope, FlightModals){
+	.controller('FlightSearchInfoCtrl', ['$scope', '$ionicActionSheet', '$rootScope', '$state', 'FlightModals', 
+		function($scope, $ionicActionSheet, $rootScope, $state, FlightModals){
 
 			var vm = this;
 
@@ -12,7 +12,8 @@ angular.module('flightsApp.controllers')
 				toDate : '',
 				passengers : 1,
 				travelType :  '',
-				farePrefrence : ''
+				farePrefrence : '',
+				formValidation: false
 			};
 
 			vm.searchForm.travelType = 'One-way';
@@ -111,7 +112,27 @@ angular.module('flightsApp.controllers')
 
 			vm.travellerCount = function() {
 				vm.searchForm.passengers++;
+			};
+
+			vm.validateSearchForm = function() {
+				vm.searchForm.formValidation = false;
+				var error = "";
+				if(vm.searchForm.fromAirport == '') {
+					error = "Please select from Airport\n";
+				}
+
+				if(vm.searchForm.toAirport == '') {
+					error+= "Please select to Airport";
+				}
+
+				if(error == "") {
+					$state.go('flight.flightlist', vm.searchForm);
+				} else {
+					//Implement factory to show popup 
+				}
 			}
+
+
 
 	}]);
 

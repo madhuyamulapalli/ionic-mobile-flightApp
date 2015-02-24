@@ -8,10 +8,11 @@ angular.module('flightsApp', [
   'ngResource',
   'ui.router',
   'flightsApp.services',
-  'flightsApp.controllers'
+  'flightsApp.controllers',
+  'ConsoleLogger'
   ])
 
-.run(function($rootScope, $ionicPlatform, $ionicLoading) {
+.run(['$rootScope', '$ionicPlatform', '$ionicLoading', 'PrintToConsole', function($rootScope, $ionicPlatform, $ionicLoading, PrintToConsole) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,6 +24,8 @@ angular.module('flightsApp', [
     }
   });
 
+  PrintToConsole.active = false; //to print stateprovider logs
+
   $rootScope.$on('loading:show', function() {
     $ionicLoading.show({template: '<i class="button-icon icon ion-loading-a calm"></i><br><i class="button-icon icon ion-plane calm"></i>loading...'});
   })
@@ -30,7 +33,7 @@ angular.module('flightsApp', [
   $rootScope.$on('loading:hide', function() {
     $ionicLoading.hide();
   });
-})
+}])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
@@ -68,7 +71,16 @@ angular.module('flightsApp', [
       }
     }
   })
-  .state('flight-calendar', {
+  .state('flight.flightlist', {
+    url: '/flightlist/:fromAirport&:toAirport&:fromDate&:toDate&:passengers&:farePrefrence&:travelType',
+    views: {
+      'menuContent' : {
+          templateUrl: 'templates/flights/flightList.html',
+          controller: 'FlightListCtrl'
+      }
+    }
+  })   
+  .state('flight.calendar', {
     url: '/calendar/:fromDate',
     templateUrl: ' ',
     controller: 'FlightsCalendarCtrl'
@@ -82,3 +94,4 @@ angular.module('flightsApp', [
     }
   })  
 });
+
