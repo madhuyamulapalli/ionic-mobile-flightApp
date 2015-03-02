@@ -35,7 +35,7 @@ angular.module('flightsApp', [
   });
 }])
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
 
   $httpProvider.interceptors.push(function($rootScope) {
     return {
@@ -53,6 +53,8 @@ angular.module('flightsApp', [
       }
     }
   });
+
+  $ionicConfigProvider.backButton.previousTitleText(false).icon('icon ion-ios7-arrow-back calm').text('');
 
   $urlRouterProvider.otherwise("/flight/flightsearch");
 
@@ -90,6 +92,14 @@ angular.module('flightsApp', [
     views: {
       'menuContent' : {
           templateUrl: 'templates/flights/contactus.html',
+      }
+    }
+  })
+  .state('account', {
+    url: '/myaccount',
+    views: {
+      'menuContent' : {
+        templateUrl: 'templates/account/myAccount.html'
       }
     }
   })  

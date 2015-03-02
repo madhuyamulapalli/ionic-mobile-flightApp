@@ -21,13 +21,13 @@
   </a>
   <a class="item item-icon-left  item-icon-right" ng-click="vm.showFromCalendar()">
     <i class="icon ion-arrow-right-c calm"></i>
-    {{ vm.searchForm.fromDate || 'Today' }}
+    {{ vm.searchForm.fromDate}}
     <i class="icon ion-calendar calm"></i>
   </a>
   <div class="myCalendar" id="fromFlyingDate"></div>
   <a class="item item-icon-left  item-icon-right" ng-click="vm.showToCalendar()" ng-hide="vm.searchForm.travelType == 'One-way'">
     <i class="icon ion-arrow-left-c calm"></i>
-    {{ vm.searchForm.toDate || 'Tommorow' }}
+    {{ vm.searchForm.toDate}}
     <i class="icon ion-calendar calm"></i>
   </a>
   <div class="myCalendar" id="toFlyingDate"></div>

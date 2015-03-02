@@ -1,5 +1,21 @@
 <ion-view ng-controller="FlightListCtrl as vm" title={{vm.flightlist.title}} >
 <ion-content>
-Flight list
+	<div class="card">
+	  <div class="item item-text-wrap">
+	  	  <h4 class="title calm"> {{vm.searchQuery.travelType}} {{vm.searchQuery.fromDate}} {{(vm.searchQuery.toDate)? 'to '+vm.searchQuery.toDate: ''}} <br>
+	  	{{vm.searchQuery.passengers}} <i class="icon ion-person-add"></i> {{vm.searchQuery.farePrefrence}}</h4>
+	  </div>
+	</div>
+	<div ng-init="vm.getItineraries()">
+	<ion-list>
+		<ion-item ng-show="vm.flightlist.nomatches">no matches found</ion-item>
+		<ion-item ng-repeat="itinerary in vm.flightlist.itineraries | limitTo: 50">
+			<show-itinerary></show-itinerary>
+          <p ng-click="#"><i class="icon ion-plane"></i>{{itinerary.slice[0].segment[0].flight.carrier}} <br>{{itinerary.saleTotal}}</p>
+        </ion-item>
+        
+    </ion-list>
+	</div>
+    <div ng-if="vm.flightlist.error" align="center"><p> <i class="icon ion-bug assertive"></i>  {{vm.flightlist.error}}</p></div>	
 </ion-content>
 </ion-view>

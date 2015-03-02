@@ -8,18 +8,18 @@ angular.module('flightsApp.controllers')
 			vm.searchForm = {
 				fromAirport : '',
 				toAirport : '',
-				fromDate : '',
-				toDate : '',
+				fromDate : 'Today',
+				toDate : 'Tomorrow',
 				passengers : 1,
 				travelType :  '',
 				farePrefrence : '',
 				formValidation: false
 			};
-
-			vm.searchForm.travelType = 'One-way';
-
+			var farePrefrencesList = ['Economy', 'Business', 'First'];
+			vm.searchForm.travelType = 'Round-trip';
+			vm.searchForm.farePrefrence = farePrefrencesList[0];
 			vm.showFarePrefrence = function() {
-				farePrefrencesList = ['Economy', 'Business', 'First'];
+				
 				$ionicActionSheet.show({
 				     buttons: [
 				       { text: farePrefrencesList[0]},
@@ -64,7 +64,7 @@ angular.module('flightsApp.controllers')
 			};
 
 			vm.showFromCalendar = function() {
-				/*FlightModals
+				FlightModals
 					.showCalendar((vm.searchForm.travelType == 'One-way')? 'a date' : 'from date')
 					.then(function(result) {
 						if(result) {
@@ -72,19 +72,19 @@ angular.module('flightsApp.controllers')
 						}
 					}, function(err) {
 						
-					});*/
+					});
 
-				$('#fromFlyingDate').ionCalendar({
+				/*$('#fromFlyingDate').ionCalendar({
 					lang: "en",                     // language
 				    sundayFirst: false,             // first week day
 				    years: "2015-2016",                    // years diapason
-				    format: "MM.DD.YYYY",           // date format
+				    format: "YYYY-MM-DD",           // date format
 				    onClick: function(date){        // click on day returns date
 				        vm.searchForm.fromDate = date;
 				        $('#fromFlyingDate').hide();
 				        return;
 				    }
-				});
+				});*/
 	
 			};
 
@@ -102,7 +102,7 @@ angular.module('flightsApp.controllers')
 					lang: "en",                     // language
 				    sundayFirst: false,             // first week day
 				    years: "2015-2016",                    // years diapason
-				    format: "MM.DD.YYYY",           // date format
+				    format: "YYYY-MM-DD",           // date format
 				    onClick: function(date){        // click on day returns date
 				        $('#toFlyingDate').hide();
 				        vm.searchForm.toDate = date;
