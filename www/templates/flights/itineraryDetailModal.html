@@ -1,0 +1,43 @@
+  <ion-modal-view>
+    <ion-header-bar class="bar-dark">
+	    <button class="button button-clear button-calm" ng-click="vm.closeModal()">
+	      <i class="icon ion-close-round"></i>
+	    </button>
+	    <div class="text-center" ng-bind-html="vm.itinerary.title"/>
+    </ion-header-bar>
+    <ion-content>
+    	    {{vm.getDetails(vm.constants.carrierCodeType, vm.itinerary.d.slice[0].segment[0].flight.carrier)}}
+	    	{{vm.flightUtils.convertUSD(vm.itinerary.d.saleTotal)}}<br>
+    	<div ng-repeat="slice in vm.itinerary.d.slice">
+
+	    	{{slice.segment[0].leg[0].origin}} 
+	    	{{slice.segment[slice.segment.length-1].leg[slice.segment[slice.segment.length-1].leg.length-1].destination}}
+	    	{{vm.flightUtils.getMonth_DD(slice.segment[0].leg[0].departureTime)}}
+	    	{{vm.flightUtils.getDayName(slice.segment[0].leg[0].departureTime)}}
+	    	{{vm.flightUtils.getStopCounts(slice.segment)}} stops
+	    	{{vm.flightUtils.getDuration(slice.duration)}}<br>
+	    	-------------------------------------------------
+	    	<div ng-repeat="segment in slice.segment">
+	    		{{vm.getDetails(vm.constants.carrierCodeType, segment.flight.carrier)}} ({{segment.flight.carrier}} {{segment.flight.number}})
+	    		<ul>
+		    		<li ng-repeat="leg in segment.leg">
+		    			Departure {{vm.flightUtils.getTime(leg.departureTime)}}
+		    			{{vm.getDetails(vm.constants.airportCodeType,leg.origin)}}
+		    			Arrival {{vm.flightUtils.getTime(leg.arrivalTime)}}
+		    			{{vm.getDetails(vm.constants.airportCodeType,leg.destination)}}
+		    			{{leg.mileage}} miles
+		    			{{vm.flightUtils.getDuration(leg.duration)}}
+		    		    <div ng-if="leg.connectionDuration" ng-model="">
+		    		    	{{vm.flightUtils.getDuration(leg.connectionDuration)}} layover 
+		    		    <div>
+		    			<br>
+		    			-------------------------
+		    		</li>
+	    		</ul>
+	    			    <div ng-if="segment.connectionDuration">
+		    		    	{{vm.flightUtils.getDuration(segment.connectionDuration)}} layover
+		    		    <div>
+	    	</div>
+    	</div>
+    </ion-content>
+  </ion-modal-view>

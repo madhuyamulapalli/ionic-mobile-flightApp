@@ -7,7 +7,7 @@ angular.module('flightsApp.services')
     show: show
   }
 
-  function show(templeteUrl, controller, parameters, options) {
+  function show(templeteUrl, controller, parameters, data, options) {
     // Grab the injector and create a new scope
     var deferred = $q.defer(),
         ctrlInstance,
@@ -50,7 +50,7 @@ angular.module('flightsApp.services')
       });
 
       // Invoke the controller
-      var locals = { '$scope': modalScope, 'parameters': parameters };
+      var locals = { '$scope': modalScope, 'parameters': parameters , 'data' : data};
       var ctrlEval = _evalController(controller);
       ctrlInstance = $controller(controller, locals);
       if (ctrlEval.isControllerAs) {

@@ -1,7 +1,7 @@
 angular.module('flightsApp.controllers')
 
-	.controller('FlightSearchInfoCtrl', ['$scope', '$ionicActionSheet', '$rootScope', '$state', 'FlightModals', 
-		function($scope, $ionicActionSheet, $rootScope, $state, FlightModals){
+	.controller('FlightSearchInfoCtrl', ['$scope', '$ionicActionSheet', '$rootScope', '$state', 'FlightModals', 'FlightPopupService',
+		function($scope, $ionicActionSheet, $rootScope, $state, FlightModals, FlightPopupService){
 
 			var vm = this;
 
@@ -37,6 +37,9 @@ angular.module('flightsApp.controllers')
 
 			vm.setTravelType  = function(event) {
 				vm.searchForm.travelType = angular.element(event.target).text();
+				if(vm.searchForm.travelType == 'One-way') {
+					vm.searchForm.toDate 
+				}
 			};
 
 			vm.showFromAirports = function() {
@@ -65,49 +68,26 @@ angular.module('flightsApp.controllers')
 
 			vm.showFromCalendar = function() {
 				FlightModals
-					.showCalendar((vm.searchForm.travelType == 'One-way')? 'a date' : 'from date')
+					.showCalendar('Depart Date')
 					.then(function(result) {
 						if(result) {
-
+							vm.searchForm.fromDate = result;
 						}
 					}, function(err) {
 						
 					});
-
-				/*$('#fromFlyingDate').ionCalendar({
-					lang: "en",                     // language
-				    sundayFirst: false,             // first week day
-				    years: "2015-2016",                    // years diapason
-				    format: "YYYY-MM-DD",           // date format
-				    onClick: function(date){        // click on day returns date
-				        vm.searchForm.fromDate = date;
-				        $('#fromFlyingDate').hide();
-				        return;
-				    }
-				});*/
-	
 			};
 
 			vm.showToCalendar = function() {
-				/*FlightModals
-					.showCalendar('to date')
+				FlightModals
+					.showCalendar('Return Date')
 					.then(function(result) {
 						if(result) {
-
+							vm.searchForm.toDate = result;
 						}
 					}, function(err) {
 						
-					});*/
-				$('#toFlyingDate').ionCalendar({
-					lang: "en",                     // language
-				    sundayFirst: false,             // first week day
-				    years: "2015-2016",                    // years diapason
-				    format: "YYYY-MM-DD",           // date format
-				    onClick: function(date){        // click on day returns date
-				        $('#toFlyingDate').hide();
-				        vm.searchForm.toDate = date;
-				    }
-				});
+					});
 			};
 
 			vm.travellerCount = function() {
@@ -118,17 +98,21 @@ angular.module('flightsApp.controllers')
 				vm.searchForm.formValidation = false;
 				var error = "";
 				if(vm.searchForm.fromAirport == '') {
-					error = "Please select from Airport\n";
+					error = "Please select origin airport.<br>";
 				}
 
 				if(vm.searchForm.toAirport == '') {
-					error+= "Please select to Airport";
+					error+= "Please select departure airport.<br>";
+				}
+
+				if(vm.searchForm.fromAirport != '' && vm.searchForm.toAirport != '' && vm.searchForm.fromAirport == vm.searchForm.toAirport) {
+					error+= "Origin and departure airport cant be same.";
 				}
 
 				if(error == "") {
 					$state.go('flight.flightlist', vm.searchForm);
 				} else {
-					//Implement factory to show popup 
+					FlightPopupService.showAlert('Please fix me',error);
 				}
 			}
 

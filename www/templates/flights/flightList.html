@@ -2,16 +2,14 @@
 <ion-content>
 	<div class="card">
 	  <div class="item item-text-wrap">
-	  	  <h4 class="title calm"> {{vm.searchQuery.travelType}} {{vm.searchQuery.fromDate}} {{(vm.searchQuery.toDate)? 'to '+vm.searchQuery.toDate: ''}} <br>
-	  	{{vm.searchQuery.passengers}} <i class="icon ion-person-add"></i> {{vm.searchQuery.farePrefrence}}</h4>
+	  	  <h4 class="title calm" ng-bind-html="vm.flightlist.detailTitle"></h4>
 	  </div>
 	</div>
 	<div ng-init="vm.getItineraries()">
 	<ion-list>
 		<ion-item ng-show="vm.flightlist.nomatches">no matches found</ion-item>
 		<ion-item ng-repeat="itinerary in vm.flightlist.itineraries | limitTo: 50">
-			<show-itinerary></show-itinerary>
-          <p ng-click="#"><i class="icon ion-plane"></i>{{itinerary.slice[0].segment[0].flight.carrier}} <br>{{itinerary.saleTotal}}</p>
+			<show-itinerary  itinerary="itinerary" get="vm.getDetails" show="vm.showDetails"></show-itinerary>
         </ion-item>
         
     </ion-list>
