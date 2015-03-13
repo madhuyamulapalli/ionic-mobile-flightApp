@@ -21,3 +21,23 @@ button.button-block {
 	height: 80px;
 }
 
+.text-center {
+	text-align: center;
+	width: 100%;
+}
+
+.itinerary{
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.itineraryItem {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.title {
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+}

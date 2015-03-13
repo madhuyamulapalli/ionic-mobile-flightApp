@@ -4,9 +4,15 @@
 	      Cancel
 	    </button>
     </ion-header-bar>
+
     <ion-content has-header="true" padding="true">
-        <i class="icon ion-calendar calm"></i> Please select {{vm.calendar.heading}}.
-      
-        <div class="myCalendar" id="datePicker"></div>
+      <div class="bar bar-calm">
+       <div class="text-center">{{vm.calendar.heading}}</div>
+     </div>
+     <br>
+      <div class="padding" style="margin-top:30px;">
+        <div pickadate ng-model="vm.calendar.selectedDate"></div>
+      </div>
+      <div ng-if="vm.calendar.selectedDate" ng-init="vm.updateSelectedDate()" />
     </ion-content>
   </ion-modal-view>

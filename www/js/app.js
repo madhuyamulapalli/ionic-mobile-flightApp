@@ -7,8 +7,10 @@ angular.module('flightsApp', [
   'ionic', 
   'ngResource',
   'ui.router',
+  'pickadate',
   'flightsApp.services',
   'flightsApp.controllers',
+  'flightsApp.directives',
   'ConsoleLogger'
   ])
 
@@ -36,6 +38,11 @@ angular.module('flightsApp', [
 }])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+
+  //$httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+
+ /*$httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];*/
 
   $httpProvider.interceptors.push(function($rootScope) {
     return {
@@ -95,13 +102,21 @@ angular.module('flightsApp', [
       }
     }
   })
-  .state('account', {
+  .state('flight.account', {
     url: '/myaccount',
     views: {
       'menuContent' : {
-        templateUrl: 'templates/account/myAccount.html'
+        templateUrl: 'templates/flights/myAccount.html'
       }
     }
-  })  
+  }) 
+  .state('flight.accountinfo', {
+    url: '/myaccountinfo',
+    views: {
+      'menuContent' : {
+        templateUrl: 'templates/flights/myaccountinfo.html'
+      }
+    }
+  })   
 });
 
