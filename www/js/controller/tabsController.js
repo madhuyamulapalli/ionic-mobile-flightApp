@@ -8,4 +8,8 @@ angular.module('flightsApp.controllers')
                 $scope.toggleMenu();
             }
         }];
+
+        $scope.$on('updateTabTitle', function(event, title) {
+    		$scope.navTitle = title;
+  		});
     }])

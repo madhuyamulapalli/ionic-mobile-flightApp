@@ -6,38 +6,63 @@
 	    <div class="text-center" ng-bind-html="vm.itinerary.title"/>
     </ion-header-bar>
     <ion-content>
-    	    {{vm.getDetails(vm.constants.carrierCodeType, vm.itinerary.d.slice[0].segment[0].flight.carrier)}}
-	    	{{vm.flightUtils.convertUSD(vm.itinerary.d.saleTotal)}}<br>
-    	<div ng-repeat="slice in vm.itinerary.d.slice">
-
-	    	{{slice.segment[0].leg[0].origin}} 
-	    	{{slice.segment[slice.segment.length-1].leg[slice.segment[slice.segment.length-1].leg.length-1].destination}}
-	    	{{vm.flightUtils.getMonth_DD(slice.segment[0].leg[0].departureTime)}}
-	    	{{vm.flightUtils.getDayName(slice.segment[0].leg[0].departureTime)}}
-	    	{{vm.flightUtils.getStopCounts(slice.segment)}} stops
-	    	{{vm.flightUtils.getDuration(slice.duration)}}<br>
-	    	-------------------------------------------------
-	    	<div ng-repeat="segment in slice.segment">
-	    		{{vm.getDetails(vm.constants.carrierCodeType, segment.flight.carrier)}} ({{segment.flight.carrier}} {{segment.flight.number}})
-	    		<ul>
-		    		<li ng-repeat="leg in segment.leg">
-		    			Departure {{vm.flightUtils.getTime(leg.departureTime)}}
-		    			{{vm.getDetails(vm.constants.airportCodeType,leg.origin)}}
-		    			Arrival {{vm.flightUtils.getTime(leg.arrivalTime)}}
-		    			{{vm.getDetails(vm.constants.airportCodeType,leg.destination)}}
-		    			{{leg.mileage}} miles
-		    			{{vm.flightUtils.getDuration(leg.duration)}}
-		    		    <div ng-if="leg.connectionDuration" ng-model="">
-		    		    	{{vm.flightUtils.getDuration(leg.connectionDuration)}} layover 
-		    		    <div>
-		    			<br>
-		    			-------------------------
-		    		</li>
-	    		</ul>
-	    			    <div ng-if="segment.connectionDuration">
-		    		    	{{vm.flightUtils.getDuration(segment.connectionDuration)}} layover
-		    		    <div>
-	    	</div>
-    	</div>
+		<div class="list">
+			<div class="item item-divider title calm">
+				{{vm.getDetails(vm.constants.carrierCodeType, vm.itinerary.d.slice[0].segment[0].flight.carrier)}}
+	    		{{vm.flightUtils.convertUSD(vm.itinerary.d.saleTotal)}}
+			</div>
+			<div ng-repeat="slice in vm.itinerary.d.slice">
+				<div class="item text-center">
+					{{slice.segment[0].leg[0].origin}} <i class="icon ion-plane"></i> {{slice.segment[slice.segment.length-1].leg[slice.segment[slice.segment.length-1].leg.length-1].destination}}<br>
+					{{vm.flightUtils.getDayName(slice.segment[0].leg[0].departureTime)}}, {{vm.flightUtils.getMonth_DD(slice.segment[0].leg[0].departureTime)}}<br>
+					{{vm.flightUtils.getStopCounts(slice.segment)}} stops. {{vm.flightUtils.getDuration(slice.duration)}}
+				</div>
+				<div ng-repeat="segment in slice.segment">
+					<div class="item" ng-repeat="leg in segment.leg">
+						<div class="row ">
+							<div class="col-xs-12 col-sm-12 itineraryItem">
+								Flight # {{segment.flight.carrier}} {{segment.flight.number}}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 itineraryItem">
+								{{vm.flightUtils.getTime(leg.departureTime)}} <i class="icon ion-android-arrow-up"></i>
+							</div>
+							<div class="col-xs-6 col-sm-6 itineraryItem">
+								{{vm.flightUtils.getTime(leg.arrivalTime)}} <i class="icon ion-android-arrow-down"></i>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 itineraryItem">
+								{{leg.origin}}
+							</div>
+							<div class="col-xs-6 col-sm-6 itineraryItem">
+								{{leg.destination}}
+							</div>
+						</div>						
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 itineraryItem">
+								{{leg.mileage}} miles
+							</div>
+							<div class="col-xs-6 col-sm-6 itineraryItem">
+								{{vm.flightUtils.getDuration(leg.duration)}}
+							</div>							
+						</div>
+					    <div class="row item item-divider" ng-if="leg.connectionDuration" >
+					    	<div class="col-xs-12 col-sm-12 itineraryItem">
+					    		{{vm.flightUtils.getDuration(leg.connectionDuration)}} layover, no flight change
+					    	</div>
+					    </div>
+					</div>
+    			    <div class="row item item-divider" ng-if="segment.connectionDuration" >
+    			    	<div class="col-xs-12 col-sm-12 itineraryItem">
+	    		    		{{vm.flightUtils.getDuration(segment.connectionDuration)}} layover
+	    		    	</div>
+	    		    </div>
+	    		</div>
+	    	    <div class="item item-divider">
+	    		</div>
+			</div>
+		</div>
     </ion-content>
   </ion-modal-view>

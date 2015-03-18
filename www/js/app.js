@@ -39,10 +39,8 @@ angular.module('flightsApp', [
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
 
-  //$httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-
- /*$httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];*/
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   $httpProvider.interceptors.push(function($rootScope) {
     return {
@@ -110,11 +108,20 @@ angular.module('flightsApp', [
       }
     }
   }) 
+  .state('flight.trips', {
+    url: '/trips',
+    views: {
+      'menuContent' : {
+        templateUrl: 'templates/flights/trips.html'
+      }
+    }
+  })   
   .state('flight.accountinfo', {
     url: '/myaccountinfo',
     views: {
       'menuContent' : {
-        templateUrl: 'templates/flights/myaccountinfo.html'
+        templateUrl: 'templates/flights/myaccountinfo.html',
+        controller: 'MyAccountCtrl'
       }
     }
   })   

@@ -20,7 +20,7 @@ angular.module('flightsApp.services')
   	function getMonth_DD(date) {
   		var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   		var d = new Date(date);
-  		return monthNames[d.getMonth()]+'-'+d.getDay();
+  		return monthNames[d.getMonth()]+'-'+padZero(d.getDate());
   	}
 
   	function getTime(time) {
@@ -31,13 +31,13 @@ angular.module('flightsApp.services')
         h= h ? h : 12; // the hour '0' should be '12'
         var ampm=h >= 12 ? 'p' : 'a';
         m = m < 10 ? '0'+m : m;
-        return h+':'+m+ampm;
+        return padZero(h)+':'+padZero(m)+ampm;
   	}
 
   	function getDuration(time) {
   		var h = time/60;
   		var m = time%60;
-  		return h.toFixed(0)+':'+m;
+  		return padZero(Math.floor(h))+'h:'+padZero(m)+'m';
   	}
 
     function getDayName(date) {
@@ -54,5 +54,12 @@ angular.module('flightsApp.services')
       return count-1;
     }
 
-
+    function padZero(num) {
+      num =  num+'';
+      if(num.length == 1) {
+        return '0'+num;
+      } else {
+        return num;
+      }
+    }
   });
