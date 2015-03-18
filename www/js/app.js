@@ -104,7 +104,8 @@ angular.module('flightsApp', [
     url: '/myaccount',
     views: {
       'menuContent' : {
-        templateUrl: 'templates/flights/myAccount.html'
+        templateUrl: 'templates/flights/myAccount.html',
+        controller: 'MyAccountCtrl'
       }
     }
   }) 
@@ -112,18 +113,20 @@ angular.module('flightsApp', [
     url: '/trips',
     views: {
       'menuContent' : {
-        templateUrl: 'templates/flights/trips.html'
+        templateUrl: 'templates/flights/trips.html',
+        controller: 'TripsCtrl'
       }
     }
   })   
-  .state('flight.accountinfo', {
-    url: '/myaccountinfo',
+  .state('flight.settings', {
+    url: '/settings',
     views: {
       'menuContent' : {
-        templateUrl: 'templates/flights/myaccountinfo.html',
-        controller: 'MyAccountCtrl'
+        templateUrl: 'templates/flights/settings.html',
+        controller: 'SettingsCtrl'
       }
     }
   })   
 });
 
+    

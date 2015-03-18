@@ -1,6 +1,5 @@
 angular.module('flightsApp.controllers')
-.controller('TripsCtrl', [ '$scope', function($scope) {
-        $scope.navTitle = 'Trips';
+.controller('TripsCtrl', [ '$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
         $scope.content = 'Trips content';
-        $scope.$emit('updateTabTitle', $scope.navTitle);
+        $ionicNavBarDelegate.showBackButton(false);
  }]);

@@ -1,7 +1,7 @@
 angular.module('flightsApp.controllers')
 
-	.controller('FlightListCtrl',  ['$stateParams', 'Itineraries', 'FlightModals', 'FlightUtils', 'FlightListService',
-		function($stateParams, Itineraries, FlightModals, FlightUtils, FlightListService){
+	.controller('FlightListCtrl',  ['$stateParams', '$ionicNavBarDelegate', 'Itineraries', 'FlightModals', 'FlightUtils', 'FlightListService', 
+		function($stateParams, $ionicNavBarDelegate, Itineraries, FlightModals, FlightUtils, FlightListService){
 
 		_getTodayDate = function(flyingDate) {
 			if(flyingDate == 'Today') {
@@ -22,7 +22,7 @@ angular.module('flightsApp.controllers')
 		};
 
 		var vm = this;
-
+		$ionicNavBarDelegate.showBackButton(true);
 		vm.searchQuery = {
 			fromAirport : $stateParams.fromAirport,
 			toAirport : $stateParams.toAirport,

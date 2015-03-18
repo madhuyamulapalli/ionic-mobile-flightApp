@@ -1,17 +1,10 @@
-<ion-view ng-controller="TabsPageController" title="{{navTitle}}"  left-buttons="leftButtons">
-
-<ion-tabs class="tabs-calm tabs-icon-left">
-  <ion-tab title="MyAccount" icon="ion-information-circled" >
-  	<div id="myAccount" ng-controller="MyAccountCtrl" ng-view ng-include src="'templates/flights/myAccountInfo.html'" ></div>
-  </ion-tab>
-
-  <ion-tab title="Trips" icon="icon ion-plane" >
-	<div id="trips" ng-controller="TripsCtrl" ng-view ng-include src="'templates/flights/trips.html'" ></div>
-  </ion-tab>
-
-  <ion-tab title="Settings" icon="icon ion-gear-a" >
-	<div id="settings" ng-controller="SettingsCtrl" ng-view ng-include src="'templates/flights/settings.html'" ></div>
-  </ion-tab>
-</ion-tabs>
-
+<ion-view title="MyAccount" cache-view="false">
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+  <ion-content has-header="true" padding="true">
+    <h4>{{content}}</h4>
+  </ion-content>
+  <div ng-include src="'templates/flights/tabs.html'" ></div>
 </ion-view>
