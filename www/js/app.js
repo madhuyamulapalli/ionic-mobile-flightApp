@@ -6,6 +6,7 @@
 angular.module('flightsApp', [
   'ionic', 
   'ngResource',
+  'ngCordova',
   'ui.router',
   'pickadate',
   'flightsApp.services',
@@ -24,6 +25,7 @@ angular.module('flightsApp', [
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    ionic.Platform.isFullScreen = true;
   });
 
   PrintToConsole.active = false; //to print stateprovider logs
@@ -38,7 +40,7 @@ angular.module('flightsApp', [
 }])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
-
+  $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 

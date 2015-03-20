@@ -1,11 +1,16 @@
 angular.module('flightsApp.services')
 
 .factory('FlightModalService', 
-['$ionicModal', '$rootScope', '$q', '$injector', '$controller', function($ionicModal, $rootScope, $q, $injector, $controller) {
+['$ionicModal', '$rootScope', '$q', '$injector', '$controller', '$cordovaKeyboard', function($ionicModal, $rootScope, $q, $injector, $controller, $cordovaKeyboard) {
     
   return {
     show: show
   }
+
+  //$cordovaKeyboard.hideAccessoryBar(true)
+  //$cordovaKeyboard.disableScroll(true)
+  //$cordovaKeyboard.close()
+  //var isVisible = $cordovaKeyboard.isVisible()
 
   function show(templeteUrl, controller, parameters, data, options) {
     // Grab the injector and create a new scope
@@ -15,14 +20,13 @@ angular.module('flightsApp.services')
         thisScopeId = modalScope.$id,
         defaultOptions = {
           animation: 'slide-in-up',
-          focusFirstInput: false,
+          focusFirstInput: true,
           backdropClickToClose: true,
           hardwareBackButtonClose: true,
           modalCallback: null
         };
 
     options = angular.extend({}, defaultOptions, options);
-
     $ionicModal.fromTemplateUrl(templeteUrl, {
       scope: modalScope,
       animation: options.animation,

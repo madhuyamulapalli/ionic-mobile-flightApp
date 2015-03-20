@@ -1,5 +1,5 @@
 angular.module('flightsApp.controllers')
-	.controller('AirportSearchCtrl', ['$scope', 'parameters', 'Airport', function($scope, parameters, Airport) {
+	.controller('AirportSearchCtrl', ['$scope', 'parameters', 'Airport', '$cordovaKeyboard', function($scope, parameters, Airport, $cordovaKeyboard) {
 
 		var vm = this;
 		vm.airport = {
@@ -7,6 +7,9 @@ angular.module('flightsApp.controllers')
 			placeholder : '',
 			error : ''
 		};
+
+		//$cordovaKeyboard.hideAccessoryBar(true);
+		//$cordovaKeyboard.disableScroll(true);
 
 		vm.airports = {};
 
