@@ -1,7 +1,7 @@
 angular.module('flightsApp.controllers')
 
-	.controller('FlightListCtrl',  ['$stateParams', '$ionicNavBarDelegate', 'Itineraries', 'FlightModals', 'FlightUtils', 'FlightListService', 
-		function($stateParams, $ionicNavBarDelegate, Itineraries, FlightModals, FlightUtils, FlightListService){
+	.controller('FlightListCtrl',  ['$stateParams', '$ionicNavBarDelegate', '$ionicLoading', 'Itineraries', 'FlightModals', 'FlightUtils', 'FlightListService', 
+		function($stateParams, $ionicNavBarDelegate, $ionicLoading, Itineraries, FlightModals, FlightUtils, FlightListService){
 
 		_getTodayDate = function(flyingDate) {
 			if(flyingDate == 'Today') {
@@ -23,6 +23,7 @@ angular.module('flightsApp.controllers')
 
 		var vm = this;
 		$ionicNavBarDelegate.showBackButton(true);
+
 		vm.searchQuery = {
 			fromAirport : $stateParams.fromAirport,
 			toAirport : $stateParams.toAirport,
@@ -54,10 +55,10 @@ angular.module('flightsApp.controllers')
 			taxes : []
 		}
 
-		vm.getItineraries  = function() {
-
+		vm.getItineraries  = function() {			
 		    Itineraries.getItineraries({url:'itineraries'}, vm.searchQuery)
 		    .$promise.then(function(data) {
+
 		    	vm.flightlist.itinerariesInfo = data.trips.data;
 		        vm.flightlist.itineraries = data.trips.tripOption;
 		        if(vm.flightlist.itineraries.length == 0) {

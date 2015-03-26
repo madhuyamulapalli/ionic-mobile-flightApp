@@ -98,7 +98,7 @@ angular.module('flightsApp', [
     url: '/contactus',
     views: {
       'menuContent' : {
-          templateUrl: 'templates/flights/contactus.html',
+          templateUrl: 'templates/flights/contactus.html'
       }
     }
   })

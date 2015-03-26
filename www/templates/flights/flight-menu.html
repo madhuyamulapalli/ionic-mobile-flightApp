@@ -10,6 +10,7 @@
             </ion-nav-buttons>
           </ion-nav-bar>
           <ion-nav-view name="menuContent"> </ion-nav-view>
+          <ion-nav-view name="subContent"></ion-nav-view>
         </ion-side-menu-content> 
 
         <ion-side-menu side="left">
@@ -19,17 +20,17 @@
           <ion-content>
             <div class="list">
               <ion-list>
-                 <ion-item nav-clear menu-close href="#/flight/flightsearch" class="item item-icon-left" >
+                 <ion-item nav-clear menu-close ui-sref="flight.flightsearch" class="item item-icon-left" >
                       <i class="icon ion-search calm"></i>Flight Search
                   </ion-item>
-                 <ion-item nav-clear menu-close href="#/flight/myaccount" class="item item-icon-left" >
+                 <ion-item nav-clear menu-close ui-sref="flight.account" class="item item-icon-left" >
                       <i class="icon ion-document calm"></i>My Account
                   </ion-item>
-                 <ion-item nav-clear menu-close href="#/flight/contactus" class="item item-icon-left" >
+                 <ion-item nav-clear menu-close ui-sref="flight.contactus" class="item item-icon-left" >
                       <i class="icon ion-help calm"></i>Contact us
                   </ion-item>                  
               </ion-list>
-                         
+             </div>
           </ion-content>
         </ion-side-menu>
 </ion-side-menus>

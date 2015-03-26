@@ -5,7 +5,7 @@ angular.module('flightsApp.directives', [])
 		scope: {
 			itinerary : '=',
 			get : '&',
-			show : '&',
+			show : '&'
 		}, 
 
 		controller : ['$scope', function($scope) {
